@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background: #f4f4f4; max-width: 700px; margin: auto; }
+    .question { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 0 5px #ccc; }
+    .explanation { display: none; margin-top: 10px; padding: 10px; border-radius: 5px; }
+    button { padding: 8px 15px; margin-top: 10px; cursor: pointer; font-size: 1em; }
+    h1 { text-align: center; }
+    .correct { background-color: #d4f8d4; }
+    .incorrect { background-color: #f8d4d4; }
+    .answers label { display: block; margin: 5px 0; cursor: pointer; }
+    #opcionesInicio { margin-bottom: 20px; }
+  </style>
+</head>
+<body>
+  <h1></h1>
+
+  <div id="opcionesInicio">
+    <label><input type="checkbox" id="aleatorioPreguntas"> Aleatorizar orden de preguntas</label>
+    <label><input type="checkbox" id="aleatorioRespuestas"> Aleatorizar orden de respuestas</label>
+    <button onclick="iniciarTest()">Iniciar Test</button>
+  </div>
+
+  <div id="quiz"></div>
+  <button id="finalizarBtn">Finalizar test</button>
+  <div id="resultado" style="font-size: 1.3em; font-weight: bold; margin-top: 20px;"></div>
+  <button id="reiniciarBtn" style="display:none;">Reiniciar test</button>
+
+  <script>
+    const preguntasOriginal = [
+      {
+        pregunta: "¿Cómo asegurarte de que una base de datos autónoma sólo sea accesible desde un grupo específico de IPs?",
+        opciones: ["Access Control List", "IPSec List", "IP Vault", "Security List"],
+        tipo: "simple",
+        correcta: 0,
+        explicacion: "Se usa una Access Control List (ACL) para definir las IPs permitidas."
+      },
+      {
+        pregunta: "¿Qué tipo de almacenamiento usa Autonomous Data Warehouse?",
+        opciones: ["Row", "Columnar", "Mixed", "Object"],
+        tipo: "simple",
+        correcta: 1,
+        explicacion: "Usa almacenamiento columnar para optimizar consultas analíticas."
+      },
+      {
+        pregunta: "¿Cuáles son características del Autonomous Database? (selecciona todas las que apliquen)",
+        opciones: ["Auto parcheo", "Auto escalado", "Necesita intervención manual constante", "Auto respaldo"],
+        tipo: "multiple",
+        correcta: [0,1,3],
+        explicacion: "El Autonomous Database ofrece auto parcheo, escalado y respaldo automáticos."
+      }
+    ];
+	const nombreDelTest = "1Z0-931-25: Oracle Autonomous Database Cloud 2025 Professional";
+	document.title = nombreDelTest;
+	document.querySelector("h1").textContent = nombreDelTest;
+    let preguntas = [];
+    let respuestasUsuario = [];
+    const quiz = document.getElementById('quiz');
+    const finalizarBtn = document.getElementById('finalizarBtn');
+    const resultado = document.getElementById('resultado');
+    const reiniciarBtn = document.getElementById('reiniciarBtn');
+
+    finalizarBtn.addEventListener('click', finalizarTest);
+    reiniciarBtn.addEventListener('click', () => location.reload());
+
+    function iniciarTest() {
+      const aleatorioPreguntas = document.getElementById('aleatorioPreguntas').checked;
+      const aleatorioRespuestas = document.getElementById('aleatorioRespuestas').checked;
+
+      preguntas = JSON.parse(JSON.stringify(preguntasOriginal)); // Clonar
+      if (aleatorioPreguntas) {
+        preguntas = preguntas.sort(() => Math.random() - 0.5);
+      }
+
+      if (aleatorioRespuestas) {
+        preguntas.forEach(p => {
+          const original = p.opciones.map((op, i) => ({op, i}));
+          const mezcladas = original.sort(() => Math.random() - 0.5);
+          p.opciones = mezcladas.map(o => o.op);
+          if (p.tipo === 'simple') {
+            p.correcta = mezcladas.findIndex(o => o.i === p.correcta);
+          } else {
+            p.correcta = mezcladas.map((o, i) => p.correcta.includes(o.i) ? i : -1).filter(i => i >= 0);
+          }
+        });
+      }
+
+      respuestasUsuario = Array(preguntas.length).fill(null);
+      document.getElementById('opcionesInicio').style.display = 'none';
+      cargarTest();
+    }
+
+    function cargarTest() {
+      quiz.innerHTML = '';
+      preguntas.forEach((q, index) => {
+        const div = document.createElement('div');
+        div.className = 'question';
+        div.id = `pregunta${index}`;
+
+        let respuestasHtml = '';
+        if (q.tipo === 'simple') {
+          respuestasHtml = q.opciones.map((op, i) =>
+            `<label><input type="radio" name="q${index}" value="${i}" /> ${op}</label>`
+          ).join('');
+        } else {
+          respuestasHtml = q.opciones.map((op, i) =>
+            `<label><input type="checkbox" name="q${index}" value="${i}" /> ${op}</label>`
+          ).join('');
+        }
+
+        div.innerHTML = `
+          <h3>${index + 1}. ${q.pregunta}</h3>
+          <div class="answers">${respuestasHtml}</div>
+          <div id="exp${index}" class="explanation"></div>
+        `;
+
+        quiz.appendChild(div);
+
+        const inputs = div.querySelectorAll('input');
+        inputs.forEach(input => {
+          input.addEventListener('change', () => guardarRespuesta(index));
+        });
+      });
+
+      resultado.textContent = '';
+      finalizarBtn.style.display = 'inline-block';
+      reiniciarBtn.style.display = 'none';
+    }
+
+    function guardarRespuesta(index) {
+      const q = preguntas[index];
+      const inputs = document.querySelectorAll(`input[name="q${index}"]`);
+
+      if (q.tipo === 'simple') {
+        let seleccionada = null;
+        inputs.forEach(input => {
+          if (input.checked) seleccionada = parseInt(input.value);
+        });
+        respuestasUsuario[index] = seleccionada;
+      } else {
+        const seleccionadas = [];
+        inputs.forEach(input => {
+          if (input.checked) seleccionadas.push(parseInt(input.value));
+        });
+        respuestasUsuario[index] = seleccionadas;
+      }
+    }
+
+    function finalizarTest() {
+      let correctasCount = 0;
+
+      preguntas.forEach((q, index) => {
+        const exp = document.getElementById(`exp${index}`);
+        const divPregunta = document.getElementById(`pregunta${index}`);
+        const respuestas = divPregunta.querySelectorAll('input');
+
+        divPregunta.classList.remove('correct', 'incorrect');
+        respuestas.forEach(i => i.disabled = true);
+
+        const respuestaUser = respuestasUsuario[index];
+        let esCorrecta = false;
+
+        if (q.tipo === 'simple') {
+          esCorrecta = (respuestaUser === q.correcta);
+        } else {
+          const corr = q.correcta.slice().sort().toString();
+          const resp = (Array.isArray(respuestaUser) ? respuestaUser.slice().sort().toString() : '');
+          esCorrecta = (corr === resp);
+        }
+
+        if (esCorrecta) {
+          divPregunta.classList.add('correct');
+          correctasCount++;
+        } else {
+          divPregunta.classList.add('incorrect');
+        }
+
+        exp.style.display = 'block';
+        exp.textContent = q.explicacion;
+
+        respuestas.forEach(input => {
+          const label = input.parentElement;
+          label.style.fontWeight = 'normal';
+          label.style.color = '#000';
+          const val = parseInt(input.value);
+          if (q.tipo === 'simple') {
+            if (val === q.correcta) {
+              label.style.fontWeight = 'bold';
+              label.style.color = 'green';
+            }
+            if (input.checked && val !== q.correcta) {
+              label.style.color = 'red';
+            }
+          } else {
+            if (q.correcta.includes(val)) {
+              label.style.fontWeight = 'bold';
+              label.style.color = 'green';
+            }
+            if (input.checked && !q.correcta.includes(val)) {
+              label.style.color = 'red';
+            }
+          }
+        });
+      });
+
+      resultado.textContent = `Has acertado ${correctasCount} de ${preguntas.length} preguntas. (${Math.round((correctasCount/preguntas.length)*100)}%)`;
+
+      finalizarBtn.style.display = 'none';
+      reiniciarBtn.style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>
