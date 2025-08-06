@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menú de Tests de Certificación</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 {
+      color: #333;
+    }
+    .test-list {
+      margin-top: 2rem;
+    }
+    .test-item {
+      background: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    .test-item a {
+      text-decoration: none;
+      color: #007bff;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Tests de Certificación Oracle</h1>
+  <p>Selecciona un test para comenzar:</p>
+
+  <div class="test-list" id="testList"></div>
+
+  <script>
+    // 📁 Aquí defines los tests que vas agregando
+    const tests = [
+      {
+        nombre: "OCI 1Z0-931-25 - Autonomous Database 2025",
+        archivo: "1Z0-931-25 Oracle Autonomous Database Cloud 2025 Professional.html"
+      },
+      {
+        nombre: "OCI Foundations 2025",
+        archivo: "oci-foundations.html"
+      },
+      {
+        nombre: "OCI Monitoring & Observability",
+        archivo: "oci-observability.html"
+      }
+      // Añade más aquí según vayas creando
+    ];
+
+    const testList = document.getElementById("testList");
+
+    tests.forEach(test => {
+      const div = document.createElement("div");
+      div.className = "test-item";
+      div.innerHTML = `<a href="${test.archivo}">${test.nombre}</a>`;
+      testList.appendChild(div);
+    });
+  </script>
+
+</body>
+</html>
