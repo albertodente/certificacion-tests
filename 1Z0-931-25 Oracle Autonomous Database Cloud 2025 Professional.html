@@ -44,28 +44,458 @@
     });
 
     const preguntasOriginal = [
-      {
-        pregunta: "¿Cómo asegurarte de que una base de datos autónoma sólo sea accesible desde un grupo específico de IPs?",
-        opciones: ["Access Control List", "IPSec List", "IP Vault", "Security List"],
-        tipo: "simple",
-        correcta: 0,
-        explicacion: "Se usa una Access Control List (ACL) para definir las IPs permitidas."
-      },
-      {
-        pregunta: "¿Qué tipo de almacenamiento usa Autonomous Data Warehouse?",
-        opciones: ["Row", "Columnar", "Mixed", "Object"],
-        tipo: "simple",
-        correcta: 1,
-        explicacion: "Usa almacenamiento columnar para optimizar consultas analíticas."
-      },
-      {
-        pregunta: "¿Cuáles son características del Autonomous Database? (selecciona todas las que apliquen)",
-        opciones: ["Auto parcheo", "Auto escalado", "Necesita intervención manual constante", "Auto respaldo"],
-        tipo: "multiple",
-        correcta: [0,1,3],
-        explicacion: "El Autonomous Database ofrece auto parcheo, escalado y respaldo automáticos."
-      }
-    ];
+  {
+    pregunta: "Which statement is true about Autonomous Transaction Processing?",
+    opciones: [
+      "It is used with data marts and machine learning.",
+      "Data is stored in columnar format.",
+      "It is used for OLTP and mixed workloads.",
+      "It is used for analytic workloads."
+    ],
+    tipo: "simple",
+    correcta: 2,
+    explicacion: "ATP está diseñado específicamente para cargas de trabajo OLTP (procesamiento transaccional) y mixtas, no para análisis."
+  },
+  {
+    pregunta: "Which statement is true about Autonomous Data Warehouse (ADW)?",
+    opciones: [
+      "Response time is optimized for queries.",
+      "Missing indexes are detected and created.",
+      "Data is stored in row format.",
+      "Data is stored in columnar format."
+    ],
+    tipo: "simple",
+    correcta: 3,
+    explicacion: "ADW usa almacenamiento columnar para optimizar consultas analíticas, a diferencia del formato por filas usado en OLTP."
+  },
+  {
+    pregunta: "Which two actions can be performed from the OCI Console for an Oracle Autonomous Database?",
+    opciones: [
+      "Scale up or scale down CPU",
+      "Increase storage allocated for database",
+      "Scale up or scale down memory",
+      "Increase network bandwidth"
+    ],
+    tipo: "multiple",
+    correcta: [0, 1],
+    explicacion: "En OCI Console puedes escalar CPU y almacenamiento. La memoria escala con la CPU y el ancho de banda es gestionado automáticamente."
+  },
+  {
+    pregunta: "Which three statements are true about using Oracle Cloud Infrastructure?",
+    opciones: [
+      "It supports only bare metal DB systems.",
+      "It supports only virtual machine and bare metal DB systems.",
+      "It supports only Exadata systems.",
+      "It provides complete lifecycle automation.",
+      "It provides high availability and scalability.",
+      "It enables you to run everything from small VMs to large bare metal clusters."
+    ],
+    tipo: "multiple",
+    correcta: [3, 4, 5],
+    explicacion: "OCI es flexible (soporta múltiples sistemas), ofrece automatización completa, alta disponibilidad, y escalabilidad."
+  },
+  {
+    pregunta: "Which type operations are included in automated data center operations?",
+    opciones: [
+      "All of these",
+      "Patching a database",
+      "Automatically handling failures and errors",
+      "Online backups of a database",
+      "Provisioning a database"
+    ],
+    tipo: "simple",
+    correcta: 0,
+    explicacion: "Las operaciones automatizadas incluyen parches, manejo de fallos, backups en línea y aprovisionamiento."
+  },
+  {
+    pregunta: "Which statement is true about Notification Service?",
+    opciones: [
+      "It helps you broadcast messages to distributed components by using an Exadata-subscribe model.",
+      "It helps you broadcast messages to distributed components by using a private-subscribe model.",
+      "It helps you broadcast messages to distributed components by using a hybrid-subscribe model.",
+      "It helps you broadcast messages to distributed components using a publish-subscribe model."
+    ],
+    tipo: "simple",
+    correcta: 3,
+    explicacion: "El servicio de notificaciones usa el modelo publish-subscribe (pub/sub), no los otros modelos mencionados."
+  },
+  {
+    pregunta: "Which two are required for Autonomous Database manual backups?",
+    opciones: [
+      "The name format for the bucket in object storage must be backup#<databasename>.",
+      "The object bucket name must be in uppercase.",
+      "The name format for the bucket in object storage must be backup_<databasename>.",
+      "The object bucket name must be in lowercase."
+    ],
+    tipo: "multiple",
+    correcta: [2, 3],
+    explicacion: "El formato correcto es 'backup_<nombre>' y los nombres de buckets deben estar en minúsculas (requisito de OCI Object Storage)."
+  },
+  {
+    pregunta: "Which three are required for provisioning an Oracle Autonomous Database instance?",
+    opciones: [
+      "Number of CPUs",
+      "Number of tablespaces",
+      "Backup location FRA size",
+      "Database name",
+      "Workload type"
+    ],
+    tipo: "multiple",
+    correcta: [0, 3, 4],
+    explicacion: "Debes especificar CPUs, nombre de BD y tipo de carga (ATP o ADW). Tablespaces y FRA son gestionados automáticamente."
+  },
+  {
+    pregunta: "Which two statements are true about a cloned Autonomous Database?",
+    opciones: [
+      "It is a refreshable (read-only) clone of the source Autonomous Database.",
+      "It can contain only the metadata of the source Autonomous Database.",
+      "It can contain only the data of the source Autonomous Database.",
+      "It is a refreshable (read-write) clone of the source Autonomous Database."
+    ],
+    tipo: "multiple",
+    correcta: [2, 3],
+    explicacion: "Los clones son read-write y contienen datos (no solo metadatos). No son read-only por defecto."
+  },
+  {
+    pregunta: "Which statement is true about moving Autonomous Database Resources?",
+    opciones: [
+      "After a resource is moved to a new compartment, inherent policies apply later and affect access to that resource.",
+      "After a resource is moved to a new tenant, inherent policies apply later and affect access to that resource.",
+      "After a resource is moved to a new compartment, inherent policies apply immediately and affect access to that resource.",
+      "After a resource is moved to a new tenant, inherent policies apply immediately and affect access to that resource."
+    ],
+    tipo: "simple",
+    correcta: 2,
+    explicacion: "Al mover a un nuevo compartment, las políticas se aplican inmediatamente. No se puede mover entre tenants."
+  },
+  {
+    pregunta: "Which three capabilities of Oracle Autonomous Database can accelerate innovation?",
+    opciones: [
+      "Instant scaling of storage",
+      "Provisioning of a data warehouse in seconds",
+      "Built-in AI and ML to find patterns to identify undiscovered anomalies",
+      "Scaling of CPUs with very little downtime"
+    ],
+    tipo: "multiple",
+    correcta: [0, 1, 2],
+    explicacion: "El escalado instantáneo, aprovisionamiento rápido y AI/ML integrado permiten innovación. El escalado de CPUs tiene algo de downtime."
+  },
+  {
+    pregunta: "At which three levels can you implement isolation with Autonomous Database Dedicated Deployment?",
+    opciones: [
+      "Virtual cloud network (VCN) level",
+      "Database level",
+      "Subnet level",
+      "Region level",
+      "Container database level"
+    ],
+    tipo: "multiple",
+    correcta: [0, 2, 4],
+    explicacion: "El aislamiento se implementa en VCN, subredes y CDB. Region y database level no son específicos de Dedicated Deployment."
+  },
+  {
+    pregunta: "Which four levels of access can be defined in policies?",
+    opciones: [
+      "Inspect",
+      "Manage",
+      "Create",
+      "Write",
+      "Use",
+      "Read"
+    ],
+    tipo: "multiple",
+    correcta: [0, 1, 4, 5],
+    explicacion: "Los niveles en IAM son: Inspect (solo listar), Read (leer), Use (interactuar) y Manage (control total). Create/Write están incluidos en Manage."
+  },
+  {
+    pregunta: "Which three inputs must you provide when creating an autonomous Exadata infrastructure resource?",
+    opciones: [
+      "VCN",
+      "Availability domain",
+      "Storage",
+      "Shape"
+    ],
+    tipo: "multiple",
+    correcta: [0, 1, 3],
+    explicacion: "Debes especificar VCN, dominio de disponibilidad y shape. El almacenamiento se gestiona automáticamente según el shape."
+  },
+  {
+    pregunta: "Which three actions can you perform from the Autonomous Container Database (CDB) details page?",
+    opciones: [
+      "Stop the Autonomous Database",
+      "Stop the CDB",
+      "Change the maintenance schedule",
+      "Move the CDB to a different compartment",
+      "Restart the CDB",
+      "Change the backup retention policy for the CDB"
+    ],
+    tipo: "multiple",
+    correcta: [1, 3, 4],
+    explicacion: "Desde la página del CDB puedes detener, mover o reiniciar el CDB. Las otras opciones son para Autonomous Databases individuales."
+  },
+  {
+    pregunta: "Ideally, which two tasks does a Fleet Administrator perform?",
+    opciones: [
+      "Create IAM users",
+      "Manage Autonomous Databases",
+      "Provision Autonomous Database instances",
+      "Provision autonomous container databases",
+      "Provision autonomous Exadata infrastructure"
+    ],
+    tipo: "multiple",
+    correcta: [3, 4],
+    explicacion: "Un Fleet Administrator gestiona infraestructura (Exadata y CDBs), no instancias individuales ni usuarios IAM."
+  },
+  {
+    pregunta: "Which two statements are true about REST APIs and RESTful services?",
+    opciones: [
+      "RESTful services are complex when compared to traditional XML SOAP communications.",
+      "REST stands for Representational State Transfer.",
+      "REST APIs use only JSON for communication.",
+      "REST APIs use the HTTP communication protocol but mainly use JSON for communication."
+    ],
+    tipo: "multiple",
+    correcta: [1, 3],
+    explicacion: "REST es más simple que SOAP, usa HTTP y principalmente JSON (aunque soporta otros formatos)."
+  },
+  {
+    pregunta: "Which three statements are true about automated tuning?",
+    opciones: [
+      "Parallel execution of queries needs to be monitored manually.",
+      "It has a simple web-based monitoring console.",
+      "Partitioning is not covered as part of the automated tuning.",
+      "It provides fast performance out of the box with zero tuning.",
+      "It has built-in resource management plans."
+    ],
+    tipo: "multiple",
+    correcta: [1, 3, 4],
+    explicacion: "La sintonización automática incluye consola, rendimiento optimizado y planes de recursos. El paralelismo y particionado son automáticos."
+  },
+  {
+    pregunta: "Which three do you need to enter when you set up the config file by using the oci setup config command?",
+    opciones: [
+      "User OCID",
+      "OCI Region OCID",
+      "Location of the config file",
+      "File format of the config file",
+      "Tenancy OCID"
+    ],
+    tipo: "multiple",
+    correcta: [0, 2, 4],
+    explicacion: "Se requieren User OCID, Tenancy OCID y ubicación del archivo. El formato y Region OCID no son necesarios."
+  },
+  {
+    pregunta: "What is the main use case for REST APIs?",
+    opciones: [
+      "Monitoring and DevOps",
+      "Monitoring, DevOps, and development",
+      "Monitoring only",
+      "DevOps only",
+      "Monitoring and development"
+    ],
+    tipo: "simple",
+    correcta: 1,
+    explicacion: "Las REST APIs se usan para desarrollo, DevOps y monitoreo, no solo para uno de estos casos."
+  },
+  {
+    pregunta: "Which two statements are true about the OCI command-line interface (CLI)?",
+    opciones: [
+      "It calls OCI REST APIs.",
+      "It does not use REST APIs.",
+      "It is easy to use but involves complex installation and configuration.",
+      "It is easy to use and lightweight to install.",
+      "It runs on Linux operating systems only."
+    ],
+    tipo: "multiple",
+    correcta: [0, 3],
+    explicacion: "La CLI de OCI usa REST APIs internamente, es fácil de instalar y funciona en Linux, macOS y Windows."
+  },
+  {
+    pregunta: "Which two statements are true about scaling on demand?",
+    opciones: [
+      "Resizing occurs instantly, and is fully online.",
+      "Resizing requires a restart.",
+      "You can independently scale compute or storage.",
+      "Compute and storage must be scaled together."
+    ],
+    tipo: "multiple",
+    correcta: [0, 2],
+    explicacion: "El escalado es online/inmediato para almacenamiento, y compute/storage pueden escalarse por separado."
+  },
+  {
+    pregunta: "Which statement is true about a workspace in Oracle APEX?",
+    opciones: [
+      "It can be associated with only one schema.",
+      "It is not associated with any schemas.",
+      "It can be associated with multiple schemas in the same database.",
+      "It can be associated with multiple schemas from different databases."
+    ],
+    tipo: "simple",
+    correcta: 2,
+    explicacion: "Un workspace de APEX puede asociarse a múltiples schemas, pero solo dentro de la misma base de datos."
+  },
+  {
+    pregunta: "Which two are prerequisites for connecting to an Autonomous Database by using SQL Developer?",
+    opciones: [
+      "Public key",
+      "DB username and password",
+      "Credential wallet",
+      "Private key",
+      "Listener port number",
+      "DB system public IP"
+    ],
+    tipo: "multiple",
+    correcta: [1, 2],
+    explicacion: "Se necesitan usuario/contraseña y el wallet de credenciales. Las claves y IP pública son para conexiones avanzadas."
+  },
+  {
+    pregunta: "Which three actions can a Workspace Administrator perform?",
+    opciones: [
+      "Monitoring workspace activity",
+      "Adding space to a schema",
+      "Approving workspace requests",
+      "Managing user accounts",
+      "Managing workspace-to-schema assignments",
+      "Viewing usage reports for a workspace"
+    ],
+    tipo: "multiple",
+    correcta: [0, 3, 4],
+    explicacion: "Un Workspace Administrator gestiona usuarios, asignaciones schema-workspace y monitorea actividad. No aprueba solicitudes ni añade espacio."
+  },
+  {
+    pregunta: "With which does Oracle Machine Learning allow access to data in Autonomous Database?",
+    opciones: [
+      "Data ingestion and selection, and data viewing and discovery",
+      "Data viewing and discovery, and data ingestion and selection",
+      "Data ingestion and selection only",
+      "Data ingestion and selection, data viewing and discovery, and data analysis"
+    ],
+    tipo: "simple",
+    correcta: 3,
+    explicacion: "OML cubre todo el flujo: ingesta, visualización, descubrimiento y análisis de datos."
+  },
+  {
+    pregunta: "Which two statements are true about built-in SQL Worksheet and Notebook?",
+    opciones: [
+      "There is no need to install a client query tool.",
+      "You can quickly start running queries with built-in web-based notebooks.",
+      "They are based on Apache Tomcat.",
+      "You need to install a client query tool for PL/SQL."
+    ],
+    tipo: "multiple",
+    correcta: [0, 1],
+    explicacion: "Son herramientas web integradas (sin instalación) para ejecutar consultas. No usan Tomcat ni requieren clientes adicionales."
+  },
+  {
+    pregunta: "You want to move some unstructured data consisting of images and videos to Cloud Storage. Which type of storage is the most cost-effective?",
+    opciones: [
+      "Block Volume",
+      "Object Storage",
+      "Archive Storage",
+      "File Storage"
+    ],
+    tipo: "simple",
+    correcta: 2,
+    explicacion: "Archive Storage es el más económico para datos raramente accedidos (como imágenes/videos antiguos)."
+  },
+  {
+    pregunta: "Which two statements are true about Oracle Autonomous JSON Database?",
+    opciones: [
+      "It supports MySQL-style database applications.",
+      "It allows you to store JSON data in the database.",
+      "It supports NoSQL-style document-centric applications.",
+      "It does not support autoscaling."
+    ],
+    tipo: "multiple",
+    correcta: [1, 2],
+    explicacion: "Está optimizado para almacenar JSON y aplicaciones NoSQL. Soporta autoscaling y no está diseñado para MySQL."
+  },
+  {
+    pregunta: "Which statement is true about Spatial Studio?",
+    opciones: [
+      "It does not need additional resources",
+      "It is a self-service application to create interactive maps",
+      "It is a fully managed service available in OCI",
+      "It comes with an Autonomous Database at an additional cost"
+    ],
+    tipo: "simple",
+    correcta: 1,
+    explicacion: "Spatial Studio es una herramienta self-service para mapas interactivos. Requiere una BD con Spatial y no es un servicio gestionado."
+  },
+  {
+    pregunta: "Which two statements are true about Oracle Text?",
+    opciones: [
+      "It supports PDFs only.",
+      "It renders search results in HTML format only.",
+      "It provides full-text content searching.",
+      "It combines relational content searching via SQL."
+    ],
+    tipo: "multiple",
+    correcta: [2, 3],
+    explicacion: "Oracle Text permite búsquedas de texto completo e integración con SQL. Soporta múltiples formatos (PDF, Word, etc.) y devuelve datos crudos."
+  },
+  {
+    pregunta: "Which clause is used in Property Graph query language to specify patterns?",
+    opciones: [
+      "Match",
+      "Like",
+      "Distinct",
+      "Between"
+    ],
+    tipo: "simple",
+    correcta: 0,
+    explicacion: "En PGQL, 'MATCH' define patrones de nodos/relaciones. 'LIKE' y 'BETWEEN' son para SQL estándar."
+  },
+  {
+    pregunta: "Which procedure do you use to load data directly into existing Autonomous Database tables?",
+    opciones: [
+      "DBMS_CLOUD.COPY_DATA",
+      "DBMS_CLOUD.PUT_OBJECT",
+      "DBMS_CLOUD.LIST_FILES",
+      "DBMS_CLOUD.CREATE_EXTERNAL_TABLE"
+    ],
+    tipo: "simple",
+    correcta: 0,
+    explicacion: "COPY_DATA carga datos directamente en tablas existentes. PUT_OBJECT sube archivos, y CREATE_EXTERNAL_TABLE crea tablas externas."
+  },
+  {
+    pregunta: "For which three cloud services does DBMS_CLOUD provide support for loading data from files to tables in Autonomous Database?",
+    opciones: [
+      "Dell EMC Elastic Cloud Storage",
+      "IBM Spectrum Storage",
+      "OCI Object Storage",
+      "Amazon AWS S3",
+      "OCI Object Storage Classic"
+    ],
+    tipo: "multiple",
+    correcta: [2, 3, 4],
+    explicacion: "DBMS_CLOUD soporta OCI Object Storage, AWS S3 (con credenciales) y OCI Object Storage Classic (heredado)."
+  },
+  {
+    pregunta: "Which two methods can you use to migrate an on-premises database to Oracle Autonomous Database?",
+    opciones: [
+      "GoldenGate",
+      "Data Pump",
+      "RMAN",
+      "Data Guard"
+    ],
+    tipo: "multiple",
+    correcta: [0, 1],
+    explicacion: "Data Pump para migraciones puntuales y GoldenGate para replicación continua. RMAN y Data Guard no son métodos de migración."
+  },
+  {
+    pregunta: "What does the database migration service use for migration?",
+    opciones: [
+      "Data Guard",
+      "RMAN Backup",
+      "GoldenGate",
+      "Backup Cloud Module"
+    ],
+    tipo: "simple",
+    correcta: 2,
+    explicacion: "Oracle Database Migration Service (DMS) usa GoldenGate para migraciones con mínimo downtime."
+  }
+];
 
     let preguntas = [];
     let respuestasUsuario = [];
@@ -225,3 +655,4 @@
   </script>
 </body>
 </html>
+
