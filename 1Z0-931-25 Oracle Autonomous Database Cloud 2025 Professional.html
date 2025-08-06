@@ -494,7 +494,630 @@
     tipo: "simple",
     correcta: 2,
     explicacion: "Oracle Database Migration Service (DMS) usa GoldenGate para migraciones con mínimo downtime."
-  }
+  },
+{
+  pregunta: "Which two statements are true about Autonomous Transaction Processing (ATP)?",
+  opciones: [
+    "It creates indexes.",
+    "Memory is used to speed up joins and aggregates.",
+    "It is used for OLTP and mixed workloads.",
+    "Data is stored in columnar format."
+  ],
+  tipo: "multiple",
+  correcta: [0, 2], // A and C (0-based index)
+  explicacion: "The correct answers are A and C. ATP automatically creates indexes to optimize performance (A) and is specifically designed for OLTP and mixed workloads (C). While ATP does use memory for operations (B), this is not its defining feature. Option D is incorrect as ATP uses row storage (columnar format is used by Autonomous Data Warehouse)."
+},
+{
+  pregunta: "Which is an ORDS-hosted web application that gives Oracle Database users an interface for executing queries and scripts, creating and altering database objects, building data models, accessing Performance Hub, and viewing database activity?",
+  opciones: [
+    "Oracle Application Express (APEX)",
+    "Oracle REST Data Services (ORDS)",
+    "SQL Developer Web", 
+    "Spatial Studio"
+  ],
+  tipo: "simple",
+  correcta: 2, // C (0-based index)
+  explicacion: "SQL Developer Web (C) is the correct answer as it provides all the mentioned functionalities through an ORDS-hosted interface. While APEX (A) is web-based, it's primarily for application development. ORDS (B) is the hosting service, not the application itself. Spatial Studio (D) is specialized for geospatial data visualization."
+},
+{
+  pregunta: "Which Autonomous Database Developer tool can be used to build web applications rapidly?",
+  opciones: [
+    "Jupyter Notebooks",
+    "SQL",
+    "Web Reporting Studio",
+    "APEX"
+  ],
+  tipo: "simple",
+  correcta: 3, // APEX (0-based index)
+  explicacion: "Oracle APEX (Application Express) is the correct answer as it is specifically designed for low-code rapid web application development within Autonomous Database. Jupyter Notebooks (A) are for data science, SQL (B) is a query language, and Web Reporting Studio (C) is not an official Oracle tool."
+},
+{
+  pregunta: "Which is the recommended data loading tool to migrate data from third-party databases?",
+  opciones: [
+    "SQL Developer Migration Workbench",
+    "SQL Developer Data Import Wizard",
+    "SQL Loader",
+    "Oracle Data Pump"
+  ],
+  tipo: "simple",
+  correcta: 0, // SQL Developer Migration Workbench (0-based index)
+  explicacion: "SQL Developer Migration Workbench (A) is specifically designed for migrating from third-party databases (SQL Server, MySQL, etc.) to Oracle. While Data Pump (D) and SQL Loader (C) are powerful Oracle tools, they work best with Oracle formats. The Data Import Wizard (B) is for simple file imports."
+},
+{
+  pregunta: "For what two purposes can graphs be used?",
+  opciones: [
+    "Product recommendations",
+    "Finding anomalous patterns and using them to detect fraud",
+    "3-D modeling", 
+    "Facial recognition"
+  ],
+  tipo: "multiple",
+  correcta: [0, 1], // A and B (0-based index)
+  explicacion: "Graphs are particularly effective for (A) product recommendations (analyzing customer-purchase relationships) and (B) fraud detection (identifying unusual connection patterns). While graphs have many uses, 3D modeling (C) typically uses polygon meshes, and facial recognition (D) relies more on neural networks than graph structures."
+},
+{
+  pregunta: "Which two statements are true about autoscaling?",
+  opciones: [
+    "If you are provisioning an always-free database, autoscaling is not available",
+    "It can be enabled when provisioning an ADB instance or anytime using the Oracle Cloud Infrastructure console",
+    "Scaling up automatically expands CPU but not IO resources",
+    "Enabling autoscaling also increases the concurrency and parallelism settings for predefined services"
+  ],
+  tipo: "multiple",
+  correcta: [0, 1], // A and B (0-based index)
+  explicacion: "The correct answers are A and B. (A) Always-free Autonomous Databases don't support autoscaling. (B) Autoscaling can be enabled during provisioning or later via OCI Console. (C) is false - scaling adjusts both CPU and IO resources proportionally. (D) is false - concurrency/parallelism settings are managed separately from autoscaling."
+},
+{
+  pregunta: "Which are the three prerequisites to configure a private endpoint with autonomous databases?",
+  opciones: [
+    "There must be at least one Network Security Group (NSG) within your VCN",
+    "There must be a private subnet with the DHCP option",
+    "There must be a Vault Key configured for the autonomous database",
+    "There must be a VCN within the region of the autonomous database",
+    "There must be a Web Application Firewall (WAF) configured within the region"
+  ],
+  tipo: "multiple",
+  correcta: [0, 1, 3], // A, B and D (0-based index)
+  explicacion: "The three prerequisites are: (A) NSG in VCN for security rules, (B) private subnet with DHCP for IP assignment, and (D) VCN in the same region for network connectivity. (C) Vault Key is optional for encryption, and (E) WAF is for public endpoints only."
+},
+{
+  pregunta: "Which three developer tools come out of the box with Autonomous Database?",
+  opciones: [
+    "Web Reporting Studio",
+    "APEX",
+    "Oracle REST Data Services",
+    "SQL Developer Web", 
+    "Narrative Reports"
+  ],
+  tipo: "multiple",
+  correcta: [1, 2, 3], // B, C, D (0-based index)
+  explicacion: "The three built-in tools are: (B) APEX for low-code app development, (C) ORDS for REST APIs, and (D) SQL Developer Web for database management. (A) Web Reporting Studio and (E) Narrative Reports are not native Oracle tools included with ADB."
+},
+{
+  pregunta: "In which format is data stored in an Oracle Autonomous Data Warehouse database?",
+  opciones: [
+    "Row format",
+    "Slow Changing Dimension format", 
+    "Fast Changing Dimension format",
+    "Columnar format"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (0-based index)
+  explicacion: "Autonomous Data Warehouse (ADW) uses columnar storage format (D) to optimize analytical queries. Row format (A) is used by ATP for transactional workloads. Slow/Fast Changing Dimension formats (B/C) are data warehouse design patterns, not storage formats."
+},
+{
+  pregunta: "Which set of options can be specified when defining the preferred maintenance schedule of the Exadata Infrastructure for Autonomous Database Dedicated?",
+  opciones: [
+    "Week of the Quarter, Day of the Week, Start Hour",
+    "Quarter of the Year, Month of the Quarter, Date of the Month, Start Hour",
+    "Month of the Year, Week of the Month, Day of the Week, Start Hour",
+    "Month of the Quarter, Week of the Month, Day of the Week, Start Hour"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (0-based index)
+  explicacion: "The correct maintenance schedule options are (D): Month of the Quarter, Week of the Month, Day of the Week, and Start Hour. This granular scheduling allows for quarterly maintenance windows while avoiding conflicts with business cycles."
+},
+{
+  pregunta: "For which resource consumption will you be charged when your Autonomous Database is stopped temporarily?",
+  opciones: [
+    "Allocated number of OCPUs",
+    "Network consumption",
+    "Allocated storage",
+    "Data security"
+  ],
+  tipo: "simple",
+  correcta: 2, // C (0-based index)
+  explicacion: "You are only charged for allocated storage (C) when an Autonomous Database is stopped. Compute (OCPUs - A) and network (B) charges are suspended during stoppage. Data security (D) is a feature, not a billable resource."
+},
+{
+  pregunta: "Which three can be used in ADB for authentication to Object Storage? Which three are used by the IAM service to authenticate a principal?",
+  opciones: [
+    "Resource principal",
+    "SSH",
+    "Username and password",
+    "Wallet credentials",
+    "API signing key"
+  ],
+  tipo: "multiple",
+  correcta: [0, 2, 4], // A, C, E (0-based index)
+  explicacion: "The three valid authentication methods are: (A) Resource Principal for serverless auth, (C) Username/password for traditional auth, and (E) API signing key for programmatic access. (B) SSH is for host access, and (D) Wallet credentials are for database connections."
+},
+{
+  pregunta: "Which role is automatically granted to any user created in Autonomous Database?",
+  opciones: [
+    "DBROLE",
+    "DWROLE", 
+    "DTPROLE",
+    "DUSERROLE"
+  ],
+  tipo: "simple",
+  correcta: 1, // B (DWROLE - 0-based index)
+  explicacion: "The correct answer is DWROLE (B). This default role is automatically granted to all users in Autonomous Database (both ATP and ADW) and provides basic privileges for data manipulation and querying. The other options (A, C, D) are not default roles in Autonomous Database."
+},
+{
+  pregunta: "Which two statements are true about an API signing key?",
+  opciones: [
+    "It is an RSA key pair in PEM format.",
+    "It must be generated with a passphrase.",
+    "An RSA key pair in PEM format must have a minimum of 1024 bits.",
+    "It is required when using OCI API in conjunction with SDK/CLI."
+  ],
+  tipo: "multiple",
+  correcta: [0, 3], // A and D (0-based index)
+  explicacion: "The correct answers are: (A) API signing keys are RSA key pairs in PEM format, and (D) they're required for OCI API/SDK/CLI authentication. (B) Passphrases are optional but recommended, and (C) the minimum is 2048 bits (not 1024) for security compliance."
+},
+{
+  pregunta: "Who manages the compartment quotas for an autonomous database in a dedicated infrastructure?",
+  opciones: [
+    "Database Administrator",
+    "System Administrator", 
+    "Service Administrator",
+    "Fleet Administrator"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (0-based index)
+  explicacion: "The Fleet Administrator (D) manages compartment quotas and resource allocation in dedicated Autonomous Database deployments. Database Administrators (A) manage individual databases, while System (B) and Service Administrators (C) handle broader infrastructure or IAM respectively."
+},
+{
+  pregunta: "Which two statements are true about an autonomous database?",
+  opciones: [
+    "If you want to increase the base OCPU count to 150, you will have to contact Oracle.",
+    "You are allowed to increase the storage size, but you cannot decrease it.",
+    "Users can access and use the database even when it is in the process of upscaling.",
+    "You must shut down your database before you can increase the storage allocated to it."
+  ],
+  tipo: "multiple",
+  correcta: [0, 2], // A and B (0-based index)
+  explicacion: "The correct answers are: (A) Large scale-ups (>128 OCPUs) require Oracle support"
+},
+{
+  pregunta: "Which two statements are true about Access Control Lists (ACLs) configured for autonomous databases?",
+  opciones: [
+    "ACLs can be configured for individual IP addresses, CIDR block ranges, and VCNs",
+    "ACLs can be configured for autonomous databases only at the time of provisioning",
+    "All services that are subsets of an ADB, such as SQL Developer Web, APEX, and OML notebooks, are also blocked by ACLs",
+    "A database restore overwrites existing ACLs"
+  ],
+  tipo: "multiple",
+  correcta: [0, 2], // A and C (0-based index)
+  explicacion: "The correct answers are: (A) ACLs support IP/CIDR/VCN rules, and (C) ACLs apply to all database services uniformly. (B) is false - ACLs can be modified post-provisioning, and (D) is false - restores preserve network ACLs."
+},
+{
+  pregunta: "Which two Data Guard Replication modes are available in Autonomous Database Dedicated?",
+  opciones: [
+    "Max Synchronization",
+    "Max Availability",
+    "Max Protection",
+    "Max Performance"
+  ],
+  tipo: "multiple",
+  correcta: [1, 3], // B and D (0-based index)
+  explicacion: "Autonomous Database Dedicated offers (B) Max Availability (sync with automatic failover) and (D) Max Performance (async) modes. (A) Max Synchronization is not a valid mode, and (C) Max Protection (sync with shutdown protection) is not supported in Autonomous environments."
+},
+{
+  pregunta: "Which two tasks are performed by a Fleet Administrator?",
+  opciones: [
+    "Creating IAM users",
+    "Provisioning Autonomous Exadata Infrastructure",
+    "Provisioning Autonomous Container Databases", 
+    "Provisioning Autonomous Database instances",
+    "Managing Autonomous Databases"
+  ],
+  tipo: "multiple",
+  correcta: [1, 2], // B and C (0-based index)
+  explicacion: "A Fleet Administrator manages infrastructure-level resources: (B) Provisioning Autonomous Exadata Infrastructure and (C) Autonomous Container Databases. (A) IAM users are managed by Identity Administrators, while (D) database instances and (E) daily management are handled by DBAs."
+},
+{
+  pregunta: "Your company has deployed an autonomous database on a dedicated infrastructure. Which three resources will be managed by your company?",
+  opciones: [
+    "Schemas",
+    "DB user",
+    "DB servers",
+    "Hypervisors", 
+    "Storage servers",
+    "Encryption keys"
+  ],
+  tipo: "multiple",
+  correcta: [0, 1, 5], // A, B, F (0-based index)
+  explicacion: "In dedicated Autonomous Database deployments, your company manages: (A) Schemas, (B) Database users, and (F) Encryption keys (BYOK). Oracle manages the infrastructure: (C) DB servers, (D) Hypervisors, and (E) Storage servers as part of the autonomous service."
+},
+{
+  pregunta: "REPORTADB is a refreshable clone of PRODADB. Which two statements are true?",
+  opciones: [
+    "If you do not perform a refresh within seven days, then REPORTADB will no longer be refreshable.",
+    "REPORTADB can be changed to READ WRITE without disconnecting it from PRODADB.",
+    "APEX URLs will not work for REPORTADB.",
+    "It is possible to create cascading refreshable clones."
+  ],
+  tipo: "multiple",
+  correcta: [0, 2], // A and D (0-based index)
+  explicacion: "The correct answers are: (A) Refreshable clones expire after 7 days without refresh"
+},
+{
+  pregunta: "Which command can you use to create an autonomous database?",
+  opciones: [
+    "POST /20160918/autonomousDatabases",
+    "POST /20160918/createDatabases",
+    "POST /20160918/createautonomousDatabases", 
+    "POST /20160918/createADB"
+  ],
+  tipo: "simple",
+  correcta: 0, // A (0-based index)
+  explicacion: "The correct REST API endpoint is (A) 'POST /20160918/autonomousDatabases'. This is the official OCI API path for ADB creation. Options B, C, and D use incorrect/non-existent API paths."
+},
+{
+  pregunta: "Which two statements are true about Autonomous JSON Database?",
+  opciones: [
+    "It is schemaless",
+    "You can promote an Autonomous JSON Database service to an Autonomous Data Warehouse service",
+    "There is no storage limit for JSON collections",
+    "In a SODA collection, you can have a collection of image documents or a collection that contains both JSON documents and image documents"
+  ],
+  tipo: "multiple",
+  correcta: [0, 2], // A and D (0-based index)
+  explicacion: "The correct answers are: (A) It is schemaless (flexible document structure)"
+},
+{
+  pregunta: "You want to migrate a schema from an on-premises database to an ATP dedicated instance using Data Pump export. You specify the `ENCRYPTION` parameter as `DATA_ONLY` and Oracle Encryption Wallet is open. Which type of encryption mode will be used?",
+  opciones: [
+    "Dual",
+    "None", 
+    "Password",
+    "Transparent"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (0-based index)
+  explicacion: "The correct answer is (D) Transparent encryption. When the Oracle Encryption Wallet is open and ENCRYPTION=DATA_ONLY is specified, Data Pump uses Transparent Data Encryption (TDE) for the export. This encrypts only table data while leaving metadata unencrypted."
+},
+{
+  pregunta: "Which database specializes in developing NoSQL-style applications that use JavaScript Object Notation (JSON)?",
+  opciones: [
+    "Autonomous Data Warehouse database",
+    "Autonomous JSON database", 
+    "Autonomous APEX database",
+    "Autonomous Transaction Processing database"
+  ],
+  tipo: "simple",
+  correcta: 1, // B (0-based index)
+  explicacion: "The correct answer is (B) Autonomous JSON database. It is specifically optimized for document-centric NoSQL applications using JSON, with native SODA (Simple Oracle Document Access) APIs. While other ADB types can store JSON, they lack the specialized indexing and query optimizations of the JSON database."
+},
+{
+  pregunta: "Which are the two prerequisites to migrate a physical database to an autonomous database?",
+  opciones: [
+    "All indexes must be dropped",
+    "The database must not be encrypted",
+    "All uses of CDB admin privileges must be removed",
+    "The database must be a PDB"
+  ],
+  tipo: "multiple",
+  correcta: [2, 3], // C and D (0-based index)
+  explicacion: "The correct prerequisites are: (C) Removal of CDB admin privileges (like SYSDBA in scripts) and (D) Source must be a PDB (not CDB). (A) Indexes are preserved during migration, and (B) Encrypted databases are supported (TDE handled automatically)."
+},
+{
+  pregunta: "Which two are true about OCI Command Line Interface?",
+  opciones: [
+    "Calls OCI REST APIs",
+    "Does not use REST APIs", 
+    "Runs only on Linux operating systems",
+    "Is easy to use but involves complex installation and configuration",
+    "Is easy to use and lightweight to install"
+  ],
+  tipo: "multiple",
+  correcta: [0, 4], // A and E (0-based index)
+  explicacion: "The correct statements are: (A) The OCI CLI calls OCI REST APIs internally, and (E) It's designed to be lightweight and user-friendly. (B) is incorrect as it relies on REST, (C) is false (supports Linux/macOS/Windows), and (D) misrepresents its simple installation process."
+},
+{
+  pregunta: "How many Network Security Groups (NSGs) can you configure for an autonomous database?",
+  opciones: [
+    "Seven",
+    "Three",
+    "Nine", 
+    "Five"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (Five - 0-based index)
+  explicacion: "You can configure up to five (5) Network Security Groups (NSGs) for an Autonomous Database. This limit allows for granular security segmentation while maintaining manageability. Each NSG can contain multiple security rules for precise access control."
+},
+{
+  pregunta: "Which two types of infrastructure support the deployment of Oracle Autonomous Database?",
+  opciones: [
+    "Dedicated Exadata Infrastructure",
+    "Virtual Machines on Oracle Cloud Infrastructure", 
+    "Oracle Bare Metal Servers",
+    "Shared Exadata Infrastructure"
+  ],
+  tipo: "multiple",
+  correcta: [0, 3], // A and D (0-based index)
+  explicacion: "Autonomous Database can be deployed on both (A) Dedicated Exadata Infrastructure (private hardware) and (D) Shared Exadata Infrastructure (multi-tenant). It does not run on standard (B) VMs or (C) Bare Metal servers, which require manual database management."
+},
+{
+  pregunta: "Which statement is true about auto indexing in an autonomous database?",
+  opciones: [
+    "It analyzes the application workload, and accordingly creates new indexes and drops existing underperforming indexes to improve database performance",
+    "It provides PL/SQL APIs for configuring automatic indexing in a database and generating reports related to automatic indexing operations",
+    "It cannot rebuild indexes that are marked as unusable due to table partitioning maintenance operations",
+    "It is enabled by default"
+  ],
+  tipo: "simple",
+  correcta: 0, // A (0-based index)
+  explicacion: "The correct answer is (A). Auto indexing continuously monitors workload patterns to create/drop indexes for optimal performance. (B) is false - no manual configuration is needed, (C) is false - it handles unusable indexes automatically, and (D) is false - it must be explicitly enabled."
+},
+{
+  pregunta: "What is the pre-requisite for taking a manual backup of an Oracle Autonomous Database?",
+  opciones: [
+    "You cannot take manual backups of an Oracle Autonomous Database",
+    "You must have an Object Storage bucket and your database must be configured to connect to it",
+    "Your database must be deployed on Oracle Exadata Cloud@Customer X8M",
+    "Your database must be stopped"
+  ],
+  tipo: "simple",
+  correcta: 1, // B (0-based index)
+  explicacion: "The correct answer is (B). Manual backups require an OCI Object Storage bucket configured with proper IAM policies. (A) is false - manual backups are supported, (C) is irrelevant (works on all ADB deployments), and (D) is false - backups occur while the database is running."
+},
+{
+  pregunta: "Which two statements are true about patching an autonomous database?",
+  opciones: [
+    "Oracle patching generally does not take more than two hours",
+    "Oracle patches the database during a scheduled maintenance window",
+    "The database is not accessible to the user during patching",
+    "Users can change the patching schedule"
+  ],
+  tipo: "multiple",
+  correcta: [0, 1], // B and D (0-based index)
+  explicacion: ""
+},
+{
+  pregunta: "Which three statements are true about Oracle Data Pump?",
+  opciones: [
+    "It allows you to specify the level of compression of the export dump file. It allows only data to be exported.",
+    "It can perform remapping operations on schemas and data files.",
+    "It can export specified views as tables.",
+    "It can overwrite an existing dump file during an export operation.",
+    "It can rename tables during an import operation."
+  ],
+  tipo: "multiple",
+  correcta: [1, 2, 3], // B, C, E (0-based index)
+  explicacion: ""
+},
+{
+  pregunta: "Which Oracle Package is used to load data from Object Storage to an ADB?",
+  opciones: [
+    "DBMS_CLOUD",
+    "DBMS_MIGRATE", 
+    "DBMS_RPC",
+    "DBMS_LOAD"
+  ],
+  tipo: "simple",
+  correcta: 0, // A (0-based index)
+  explicacion: "The correct answer is (A) DBMS_CLOUD. This package provides procedures like COPY_DATA and PUT_OBJECT specifically designed for loading data from Object Storage into Autonomous Database. The other options (B-D) are either non-existent packages or serve different purposes."
+},
+{
+  pregunta: "In which two situations can Data Pump be used to migrate to an Autonomous Database?",
+  opciones: [
+    "Cross endian platforms",
+    "When moving a relatively small amount of data",
+    "Source Database 10g and later",
+    "When the source is a flat file"
+  ],
+  tipo: "multiple",
+  correcta: [0, 2], // A and C (0-based index)
+  explicacion: "Data Pump can be used for: (A) Cross-endian migrations (automatic byte conversion) and (C) Source databases from 10g onward. (B) is false - Data Pump handles large datasets efficiently, and (D) is false - Data Pump requires database sources (use DBMS_CLOUD for flat files)."
+},
+{
+  pregunta: "Which four levels of access can be defined in policies?",
+  opciones: [
+    "Manage",
+    "Read",
+    "Use",
+    "Create",
+    "Inspect",
+    "Write"
+  ],
+  tipo: "multiple",
+  correcta: [0, 1, 2, 4], // A, B, C, E (0-based index)
+  explicacion: "The four standard OCI IAM policy access levels are: (A) Manage (full control), (B) Read (view-only), (C) Use (interact with running resources), and (E) Inspect (metadata viewing). Create (D) and Write (F) are actions included under Manage."
+},
+{
+  pregunta: "Which chart shows the average number of running SQL statements historically?",
+  opciones: [
+    "Average SQL Statements",
+    "SQL Statements Executed Per Second", 
+    "Response Time Queued Statements",
+    "Running SQL Statements"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (0-based index)
+  explicacion: "The 'Running SQL Statements' (D) chart in Autonomous Database Performance Hub displays the historical average of concurrently executing SQL statements. (A) is not a standard metric, (B) shows throughput, and (C) measures wait times for queued SQL."
+},
+{
+  pregunta: "You want to enable automatic indexing in a database, but any new auto indexes should be created as invisible indexes, so that they cannot be used in SQL statements. Which command will you use?",
+  opciones: [
+    "EXEC DBMS_AUTO_INDEX.CONFIGURE('AUTO_INDEX_MODE','INVISIBLE')",
+    "EXEC DBMS_AUTO_INDEX.CONFIGURE('AUTO_INDEX_MODE','OFF')",
+    "EXEC DBMS_AUTO_INDEX.CONFIGURE('AUTO_INDEX_MODE','REPORT ONLY')",
+    "EXEC DBMS_AUTO_INDEX.CONFIGURE('AUTO_INDEX_MODE','IMPLEMENT')"
+  ],
+  tipo: "simple",
+  correcta: 2, // A (0-based index)
+  explicacion: ""
+},
+{
+  pregunta: "Which terminology is used to refer to a communication channel for sending messages to a subscription, such as email or SMS?",
+  opciones: [
+    "Notification",
+    "Subject", 
+    "Topic",
+    "Event"
+  ],
+  tipo: "simple",
+  correcta: 2, // C (0-based index)
+  explicacion: "The correct term is (C) 'Topic' - in OCI Notification Service, topics act as communication channels that group subscriptions (email/SMS/push). (A) Notifications are the messages sent, (B) Subject is message metadata, and (D) Events trigger notifications."
+},
+{
+  pregunta: "DBSRV1 is an autonomous database with the display name PRODDB. You plan to take a manual backup of this database periodically. What must the name of the bucket used to store manual backups be?",
+  opciones: [
+    "backup_dbsrv1",
+    "BACKUP_PRODDB.",
+    "BACKUP_PRODDB",
+    "backup_proddb"
+  ],
+  tipo: "simple",
+  correcta: 0, // D (0-based index)
+  explicacion: ""
+},
+{
+  pregunta: "Which two statements are true about an Oracle Autonomous Transaction Processing database?",
+  opciones: [
+    "It is best suited for Transactional Processing workloads",
+    "It uses data summaries, such as storage indexes on the Exadata storage cells, to quickly answer the data that is needed in the query",
+    "It is best suited for Analytics workloads",
+    "Memory configuration, data formats, indexes, and access structures are automatically optimized to improve response time"
+  ],
+  tipo: "multiple",
+  correcta: [0, 3], // A and D (0-based index)
+  explicacion: "The correct answers are: (A) ATP is optimized for OLTP workloads (short transactions, high concurrency), and (D) it automatically tunes memory, indexes, and structures. (B) describes ADW's storage indexes, and (C) incorrectly suggests ATP is for analytics (that's ADW's purpose)."
+},
+{
+  pregunta: "Which three predefined database service names are available in an Autonomous Data Warehouse?",
+  opciones: [
+    "high",
+    "medium", 
+    "low",
+    "tpurgent",
+    "tp"
+  ],
+  tipo: "multiple",
+  correcta: [0, 1, 2], // A, B, C (0-based index)
+  explicacion: "ADW provides three service levels: (A) HIGH (for critical reports), (B) MEDIUM (balanced), and (C) LOW (batch processing). (D) TPURGENT and (E) TP are ATP-specific services for transaction prioritization."
+},
+{
+  pregunta: "What can be used to ensure that your autonomous database is accessible only from a given set of IPs?",
+  opciones: [
+    "Security List",
+    "Access Control List", 
+    "IPSec List",
+    "IP Vault"
+  ],
+  tipo: "simple",
+  correcta: 1, // B (0-based index)
+  explicacion: "An Access Control List (ACL) (B) is the correct mechanism to restrict Autonomous Database access to specific IPs/CIDR blocks. (A) Security Lists manage VCN subnet traffic, (C) IPSec is for VPNs, and (D) IP Vault is not an OCI service."
+},
+{
+  pregunta: "Which statement is true about Autonomous Data Guard?",
+  opciones: [
+    "After a failover to the local region's standby database, you need to update the URLs for all your tools with the new primary database details",
+    "The standby database and primary database are always in different regions",
+    "Autonomous Data Guard is free",
+    "After a failover, a new standby for the primary database is automatically provisioned"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (0-based index)
+  explicacion: "The correct answer is (D) - ADB automatically reprovisions a new standby after failover. (A) is false (connection strings remain valid), (B) is false (same-region standby is default), and (C) is false (standard charges apply for standby)."
+},
+{
+  pregunta: "What is the maximum number of days that an Autonomous Database Refreshable Clone can trail its source instance?",
+  opciones: [
+    "30 days",
+    "15 days", 
+    "1 day",
+    "7 days"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (0-based index)
+  explicacion: "The correct answer is (D) 7 days. Refreshable clones must be refreshed within this window to maintain synchronization. After 7 days, the clone becomes a standalone read-write database and loses its refresh capability."
+},
+{
+  pregunta: "Which two Oracle Cloud Infrastructure console tools can be used to monitor the performance of an autonomous database service instance?",
+  opciones: [
+    "SQL Developer",
+    "APEX", 
+    "Performance Hub",
+    "OCI Metrics"
+  ],
+  tipo: "multiple",
+  correcta: [2, 3], // C and D (0-based index)
+  explicacion: "The correct tools are (C) Performance Hub (for real-time SQL monitoring) and (D) OCI Metrics (for infrastructure-level metrics). (A) SQL Developer is an external client tool, and (B) APEX is for application development."
+},
+{
+  pregunta: "When you are increasing the number of ECPUs in your Autonomous Database, what does its status show?",
+  opciones: [
+    "RESIZING IN PROGRESS",
+    "UPSCALE IN PROGRESS", 
+    "UPLIFT IN PROGRESS",
+    "SCALING IN PROGRESS"
+  ],
+  tipo: "simple",
+  correcta: 3, // D (0-based index)
+  explicacion: "The correct status is (D) 'SCALING IN PROGRESS'. This standardized status appears for all compute scaling operations (both up and down) in Autonomous Database. The other terms are not used in OCI status reporting."
+},
+{
+  pregunta: "Which two statements are true regarding cloning an Autonomous Database?",
+  opciones: [
+    "You cannot change the licensing type during cloning",
+    "The cloned database version can be higher than the source database version",
+    "A refreshable (read-only) clone of the source database can be from its backup",
+    "A new autonomous database can be cloned from a live running database instance"
+  ],
+  tipo: "multiple",
+  correcta: [1, 3], // A and D (0-based index)
+  explicacion: ""
+},
+{
+  pregunta: "Which three statements are true when provisioning an autonomous database?",
+  opciones: [
+    "The provisioned database automatically masks user data",
+    "It is deployed on a private software-defined network",
+    "The provisioned database is fully encrypted",
+    "The provisioned database has a scalable RAC cluster running on Exadata"
+  ],
+  tipo: "multiple",
+  correcta: [1, 2, 3], // B, C, D (0-based index)
+  explicacion: "The correct answers are: (B) Uses private SDN (VCN), (C) Always encrypted (TDE), and (D) Runs on scalable Exadata RAC. (A) is false - data masking requires additional configuration (Oracle Data Safe)."
+},
+{
+  pregunta: "Which two statements are true about Oracle Spatial with Autonomous Database?",
+  opciones: [
+    "Spatial supports the use of JSON and GeoJSON objects",
+    "Open Geospatial Consortium Web Services is available in Autonomous Database", 
+    "Spatial consists of a schema (MDSYS) that prescribes the storage, syntax, and semantics of supported geometric data types",
+    "Oracle Spatial with Autonomous Database comes with an integrated Network Model and Data Model"
+  ],
+  tipo: "multiple",
+  correcta: [0, 2], // A and C (0-based index)
+  explicacion: "The correct answers are: (A) Spatial supports JSON/GeoJSON formats, and (C) MDSYS schema manages spatial data types. (B) OGC web services require Spatial Studio (not native), and (D) Network/Data models are separate components."
+},
+{
+  pregunta: "Which three statements are true about private endpoints?",
+  opciones: [
+    "You can configure a private endpoint while cloning your autonomous database",
+    "You can configure an existing autonomous database to use a private endpoint",
+    "You need to set up transit routing in your VCN and use a service gateway to connect",
+    "You can change the network access of an autonomous database in a shared Exadata infrastructure from a private endpoint to a public endpoint"
+  ],
+  tipo: "multiple",
+  correcta: [0, 1, 3], // A, B, D (0-based index)
+  explicacion: "The correct answers are: (A) Private endpoints can be set during cloning, (B) Existing ADBs can be reconfigured for private access, and (D) Network access is modifiable (private↔public). (C) is false - private endpoints use private IPs directly (no service gateway)."
+}  
 ];
 
     let preguntas = [];
@@ -655,5 +1278,6 @@
   </script>
 </body>
 </html>
+
 
 
