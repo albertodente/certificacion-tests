@@ -54,16 +54,16 @@
       }
     ];
 
-  const nombreArchivo = window.location.pathname.split('/').pop().replace('.html', '');
+  const nombreArchivoCodificado = window.location.pathname.split('/').pop().replace('.html', '');
+  const nombreArchivo = decodeURIComponent(nombreArchivoCodificado);
   
-
+  // Cambiar título de la pestaña
   document.title = nombreArchivo;
   
-
+  // Cambiar el h1 con ese nombre
   const h1 = document.querySelector('h1');
   if(h1) {
-
-    h1.textContent = nombreArchivo.replace(/[-_]/g, ' ');
+    h1.textContent = nombreArchivo;
   }
 
 
@@ -225,4 +225,5 @@
   </script>
 </body>
 </html>
+
 
