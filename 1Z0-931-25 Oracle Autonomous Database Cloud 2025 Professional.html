@@ -30,6 +30,19 @@
   <button id="reiniciarBtn" style="display:none;">Reiniciar test</button>
 
   <script>
+    // Actualizar título y h1 cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', () => {
+      const nombreArchivoCodificado = window.location.pathname.split('/').pop().replace('.html', '');
+      const nombreArchivo = decodeURIComponent(nombreArchivoCodificado);
+      
+      document.title = nombreArchivo;
+      
+      const h1 = document.querySelector('h1');
+      if (h1) {
+        h1.textContent = nombreArchivo;
+      }
+    });
+
     const preguntasOriginal = [
       {
         pregunta: "¿Cómo asegurarte de que una base de datos autónoma sólo sea accesible desde un grupo específico de IPs?",
@@ -53,19 +66,6 @@
         explicacion: "El Autonomous Database ofrece auto parcheo, escalado y respaldo automáticos."
       }
     ];
-
-  const nombreArchivoCodificado = window.location.pathname.split('/').pop().replace('.html', '');
-  const nombreArchivo = decodeURIComponent(nombreArchivoCodificado);
-  
-  // Cambiar título de la pestaña
-  document.title = nombreArchivo;
-  
-  // Cambiar el h1 con ese nombre
-  const h1 = document.querySelector('h1');
-  if(h1) {
-    h1.textContent = nombreArchivo;
-  }
-
 
     let preguntas = [];
     let respuestasUsuario = [];
@@ -225,5 +225,3 @@
   </script>
 </body>
 </html>
-
-
