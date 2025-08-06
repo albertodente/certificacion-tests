@@ -53,9 +53,20 @@
         explicacion: "El Autonomous Database ofrece auto parcheo, escalado y respaldo automáticos."
       }
     ];
-	const nombreDelTest = "1Z0-931-25: Oracle Autonomous Database Cloud 2025 Professional";
-	document.title = nombreDelTest;
-	document.querySelector("h1").textContent = nombreDelTest;
+
+  const nombreArchivo = window.location.pathname.split('/').pop().replace('.html', '');
+  
+
+  document.title = nombreArchivo;
+  
+
+  const h1 = document.querySelector('h1');
+  if(h1) {
+
+    h1.textContent = nombreArchivo.replace(/[-_]/g, ' ');
+  }
+
+
     let preguntas = [];
     let respuestasUsuario = [];
     const quiz = document.getElementById('quiz');
@@ -214,3 +225,4 @@
   </script>
 </body>
 </html>
+
